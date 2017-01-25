@@ -452,6 +452,7 @@ app.controller('controlCollapseible', function($scope, $http, $route, $location,
            // imprimirAposta();
         alert("CODIGO APOSTA : "+jsonApostas.aposta.codigo+" ANOTE O CODIO PARA FUTURAS CONSULTAS");
         $location.path("/aposta");
+	location.reload();
          }).
       error(function(data) {
         if(data.status==400){
