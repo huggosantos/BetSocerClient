@@ -1,0 +1,51 @@
+<br>
+<br>
+<br>
+<div class="row">
+ <div class="row">
+  <div class="input-field col s6">
+    <input id="password" type="text" ng-model="codAposta" class="validate">
+    <label for="password">Cd. Aposta</label>
+  </div>
+  <div class="input-field col s6">
+    <button ng-click="BuscarAposta(); mostrarLoader();" class="btn right">CONSULTAR</button>
+  </div>
+</div>
+
+<ul class="collection with-header" ng-show="aux">
+<li class="collection-header">
+   <span class="title"><em id="texto3">Código: </em><em id="texto4">{{ApostaStatus.aposta.codigo}}&nbsp;&nbsp;</em><em id="texto3">Vencedora : </em><em id="texto7">{{apostaVencedora(ApostaStatus.vencedora)}}</em></span>
+</li>
+  <li class="collection-item">
+    <p>
+      <em id="texto3">&nbsp;Data Aposta : </em><em id="texto8">{{toData(ApostaStatus.aposta.data.date)}}&nbsp;&nbsp;</em><br> 
+      <em id="texto3">&nbsp;Agente : </em><em id="texto8">{{ApostaStatus.cambista}}&nbsp;&nbsp;</em><br> 
+      <em id="texto3">&nbsp;Apostador : </em><em id="texto8">{{ApostaStatus.aposta.apostador}}&nbsp;&nbsp;</em><br> 
+      <em id="texto3">&nbsp;Valor Apostado : </em><em id="texto8">{{ApostaStatus.aposta.valor_apostado}}&nbsp;&nbsp;</em><br> 
+      <em id="texto3">&nbsp;Retorno Possível : </em><em id="texto8">{{ApostaStatus.possivel_premio}}&nbsp;&nbsp;</em><br>
+      <em id="texto3">&nbsp;Status Aposta : </em><em id="texto8">{{verificaStatusAposta(ApostaStatus.aposta.ativa)}}&nbsp;&nbsp;</em> 
+
+    </p>
+    <p ng-repeat="a in ApostaStatus.aposta.jogos">
+      <em id="texto9">&nbsp;{{toData(a.data)}}&nbsp;{{toHora(a.data)}}&nbsp;</em><em id="texto3">{{a.times[0].descricao_time}}&nbsp;</em><em id="texto7">{{a.resultado.r_casa}}</em>&nbsp;vs&nbsp;<em id="texto7">{{a.resultado.r_fora}}</em>&nbsp;<em id="texto3">{{a.times[1].descricao_time}}</em>
+      <br><em id="texto3">&nbsp;Palpite:&nbsp;</em><em id="texto7">{{retornaPalpite(a.id)}}</em>&nbsp;<em id="texto3">&nbsp;Valor Palpite:&nbsp;</em><em id="texto7">{{retornaValorPalpite(a.id)}}</em>
+    </p>
+    <a class="secondary-content" ng-show="ApostaStatus.vencedora"><i class="material-icons">grade</i></a>
+  </li>
+</ul>
+
+<div class="center" style="margin-top:100px;">
+  <div class="preloader-wrapper big active" ng-if=aux2>
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+      <div class="circle"></div>
+    </div><div class="circle-clipper right">
+    <div class="circle"></div>
+  </div>
+</div>
+</div>
+</div>
+
+</div>

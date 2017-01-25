@@ -1,0 +1,58 @@
+<br>
+<br>
+<br>
+<div class="row">
+ <div class="row">
+  <div class="input-field col s6">
+    <input id="password" type="password" ng-model="password" class="validate">
+    <label for="password">Cd. Segurança</label>
+  </div>
+  <div class="input-field col s6">
+    <button ng-click="buscarDadosCambista(); mostrarLoader();" class="btn right">BUSCAR<i class="material-icons right">search</i></button>
+  </div>
+</div>
+<div class="center" style="margin-top:100px;">
+<div class="preloader-wrapper big active" ng-if=teste2>
+    <div class="spinner-layer spinner-blue-only">
+      <div class="circle-clipper left">
+        <div class="circle"></div>
+      </div><div class="gap-patch">
+        <div class="circle"></div>
+      </div><div class="circle-clipper right">
+        <div class="circle"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<table class="responsive-table"  ng-if="teste">
+  <thead>
+    <tr>
+      <th data-field="name">Nome</th>
+      <th data-field="price">Apostas</th>
+      <th data-field="price">Qtd. Jogos</th>
+      <th data-field="price">Comissão (2 jogos)</th>
+      <th data-field="price">Comissão (3 +)</th>
+      <th data-field="price">Comissão (5 +)</th>
+      <th data-field="price">Comissão Total</th>
+      <th data-field="price">Valor Total Apostado</th>
+      <th data-field="price">Total Premiação</th>
+      <th data-field="price">Líquido</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr >
+      <td>{{dados.cambista}}</td>
+      <td>{{dados.qtd_apostas}}</td>
+      <td>{{dados.qtd_jogos}}</td>
+      <td>{{dados.comissao_simples}}</td>
+      <td>{{dados.comissao_mediana}}</td>
+      <td>{{dados.comissao_maxima}}</td>
+      <td>{{dados.comissao_total}}</td>
+      <td>{{dados.total_apostado}}</td>
+      <td>{{dados.total_premiacao}}</td>
+      <td>{{dados.liquido}}</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>

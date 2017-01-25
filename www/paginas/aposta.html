@@ -1,0 +1,130 @@
+<br><br><br>
+<div class="row">
+
+	<table class="pinned" style="z-index: 998; top:57px;">
+		<thead>
+			<tr>
+				<th data-field="price" style="background-color:#8bc34a;" class="tabelaCenter">Casa</th>
+				<th data-field="price" style="background-color:#D1D5D8;" class="tabelaCenter">Empt</th>
+				<th data-field="price" style="background-color:#3498DB;" class="tabelaCenter">Fora</th>
+				<th data-field="price" style="background-color:#fff"     class="tabelaCenter">Dupla</th>
+				<th data-field="price" style="background-color:#ffeb3b;" class="tabelaCenter">Gol&frac12;</th>
+				<th data-field="price" style="background-color:#e3f2fd;" class="tabelaCenter">+2.5</th>
+				<th data-field="price" style="background-color:#ce93d8"  class="tabelaCenter">-2.5</th>
+				<th data-field="price" style="background-color:#dcedc8;" class="tabelaCenter">Ambas</th>
+			</tr>
+		</thead>
+
+	</table>
+	<div class="pinned white row" > 
+		<h4 class="texto2" style="z-index: 998; margin-top:60px; margin-left:5%; margin-right:5%;" ng-controller="controlCollapseible" ng-show="(re()>15000)" >Retorno Possílvel Utrapassou o limite</h4>
+	</div>
+	<br><br><br><br>
+	<div class="row">
+		<h2 ng-show="jogosContem()" class="texto2">NÃO HÁ JOGOS</h2>
+	</div>
+	<div ng-repeat="hora in horas | orderBy: -hora" class="clear">
+		<h3 class="texto2">{{toData(hora)}}</h3>
+		<div ng-repeat="campeonato in CampEmJogos(hora) | orderBy: descricao_campeonato">
+			<h5 class="texto2">{{campeonato}}</h5>
+			<ul class="collapsible popout" data-collapsible="accordion" ng-controller="controlCollapseible" ng-repeat="x in aposta.jogos | orderBy: -data" ng-if="x.campeonato.descricao_campeonato == campeonato && toData(hora)==toData(x.data)">
+				<li>
+					<div class="collapsible-header">{{toHora(x.data)}} <b>{{x.time[0].descricao_time}}</b> VS <b>{{x.time[1].descricao_time}}</b></div>
+					<div class="collapsible-body ">
+						<div id="lista">		
+							<ul>
+								<li style="background-color:#8bc34a;">
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_casa)" id="valor_casa{{x.id}}" value="{{x.valor_casa}}" ng-disabled="verificaPalpite(x.valor_casa)" /><label style="text-align:center;" for="valor_casa{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_casa)}}</i></label>
+								</li>
+								<li style="background-color:#D1D5D8;">
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_empate)" id="valor_empate{{x.id}}" value="{{x.valor_empate}}" ng-disabled="verificaPalpite(x.valor_empate)" /><label for="valor_empate{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_empate)}}</i></label>
+								</li>
+								<li style="background-color:#3498DB;">
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_fora)" id="valor_fora{{x.id}}" value="{{x.valor_fora}}" ng-disabled="verificaPalpite(x.valor_fora)" /><label for="valor_fora{{x.id}}"> <i id="textoNegrito">{{PalpiteColocarTraco(x.valor_fora)}}</i></label>
+								</li>
+								<li style="background-color:#fff">
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_dupla)" id="valor_dupla{{x.id}}" value="{{x.valor_dupla}}" ng-disabled="verificaPalpite(x.valor_dupla)" /><label for="valor_dupla{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_dupla)}}</i> </label>
+								</li>
+								<li style="background-color:#ffeb3b;">
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_1_2)" id="valor_1_2{{x.id}}" value="{{x.valor_1_2}}" ng-disabled="verificaPalpite(x.valor_1_2)" /><label for="valor_1_2{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_1_2)}}</i> </label>
+								</li>
+								<li style="background-color:#e3f2fd;">
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.min_gol_3)" id="min_gol_3{{x.id}}" value="{{x.min_gol_3}}" ng-disabled="verificaPalpite(x.min_gol_3)" /><label for="min_gol_3{{x.id}}"> <i id="textoNegrito">{{PalpiteColocarTraco(x.min_gol_3)}}</i></label>
+								</li>
+								<li style="background-color:#ce93d8">
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.max_gol_2)" id="max_gol_2{{x.id}}" value="{{x.max_gol_2}}" ng-disabled="verificaPalpite(x.max_gol_2)" /><label for="max_gol_2{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.max_gol_2)}}</i> </label>
+								</li>
+								<li style="background-color:#dcedc8;" >
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.ambas_gol)" id="ambas_gol{{x.id}}" value="{{x.ambas_gol}}" ng-disabled="verificaPalpite(x.ambas_gol)"/><label   for="ambas_gol{{x.id}}""><i id="textoNegrito">{{PalpiteColocarTraco(x.ambas_gol)}}</i></label>
+								</li>
+							</ul> 
+						</div>                 
+					</div>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+	<br><br><br>
+	<!-- butão fixo na tela -->
+	<div class="fixed-action-btn toolbar">
+		<a data-target="modal1" class="btn-floating btn-large green darken-3">
+			<i>
+				<svg style="margin-top:15px;" fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+					<path d="M0 0h24v24H0z" fill="none"/>
+				</svg>
+			</i>
+		</a>
+</div>
+
+<!-- Modal Com listas de jogos, para começa o processo de aposta -->
+<div id="modal1" class="modal bottom-sheet">
+	<div class="modal-content">
+		<h4 class="texto2">Lista dos jogos apostados</h4>
+		<p ng-controller="controlCollapseible"><i id="texto3">Apostator: </i><i id="texto6">&nbsp;{{nome}}&nbsp;</i><i id="texto3">&nbsp;Valor Pago: </i><i id="texto4">&nbsp;{{valor.toFixed(2)}}&nbsp;</i><i id="texto3">&nbsp;Retorno Possível: </i><i id="texto5">&nbsp;{{re()}}</i></p>
+		<table class="striped" >
+			<thead>
+				<tr>
+					<th data-field="name">CASA</th>
+					<th data-field="price">FORA</th>
+					<th data-field="price">PALPITE</th>
+					<th data-field="price">V.PALPITE</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="apostas in tamanhoVetor()">
+					<td >{{timeCasa[apostas]}}</td>
+					<td >{{timeFora[apostas]}}</td>
+					<td >{{nomePapites(apostas)}}</td>
+					<td >{{palpiteNumero[apostas]}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="modal-footer">
+			<a href="#aposta" ng-controller="controlCollapseible" ng-click="enviar()" class=" modal-action modal-close waves-effect waves-green btn-flat">APOSTAR</a>
+		</div>
+	</div>
+</div>
+<!-- Modal para adicionar os dados do apostador, nome e valor da aposta -->
+<div id="modal2" class="modal bottom-sheet" >
+	<div class="modal-content">
+		<h4>Dados Apostador</h4>
+		<div class="input-field col s6" >
+			<i class="material-icons prefix">account_circle</i>
+			<input id="icon_prefix" ng-model="nome" type="text" class="validate">
+			<label for="icon_prefix">Apostador</label>
+		</div>
+		<div class="input-field col s6" >
+			<i class="material-icons prefix">attach_money</i>
+			<input id="icon_telephone" ng-model="valor" type="number" class="validate">
+			<label for="icon_telephone">Valor</label>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="#aposta" ng-click="enviarValor()" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+	</div>
+</div>
+
+</div>

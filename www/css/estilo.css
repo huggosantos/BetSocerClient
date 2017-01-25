@@ -1,0 +1,104 @@
+
+p, h1, h2, h3{
+	font-family: sans-serif;
+}
+a{text-decoration: nome;
+color:#fff;}
+
+.tabelaCenter{
+	width:12.5%; 
+	text-align:center;
+}
+#lista ul {	
+	list-style:none;
+}
+
+#lista ul li{
+	padding: 10px 5px 10px 4px;
+	display: inline-block;
+        margin:0px 0px 0px 0px;
+	background-color:#EDEDED;
+	color: #333;
+	text-decoration: none;
+	border:none;
+}
+
+#texto{
+	margin-left: 3%;
+	margin-right: 3%;
+	text-align: justify;
+	color: #494949;
+}
+
+.texto2{
+	text-align: center;
+	color: #494949;
+}
+#textoNegrito{
+	font-weight: bolder;
+	text-align: center;
+	color: #494949;
+}
+
+#texto3{
+	font-weight: bolder;
+	text-align: justify;
+	color: #494949;
+}
+#texto4{
+	font-size: 20px;
+	font-weight: bolder;
+	text-align: justify;
+	color: #494949;
+}
+#texto5{
+	font-size: 24px;
+	font-weight: bolder;
+	text-align: justify;
+	color: #7cb342 ;
+}
+#texto6{
+	font-size: 20px;
+	text-align: justify;
+	color: #494949 ;
+}
+#texto7{
+	font-weight: bolder;
+	font-size: 20px;
+	text-align: justify;
+	color: green ;
+}
+#texto8{
+	font-weight: bolder;
+	text-align: justify;
+	color: #42a5f5;
+}
+#texto9{
+	font-size: small;
+	text-align: justify;
+}
+#titulo{
+	font-size: 2em;
+	color: #212121;
+	font-weight: bold;
+}
+#subtitulo{
+	margin-top: 1em;
+	font-size: 1.5em;
+	color: #212121;
+	font-weight: bold;
+
+}
+#titulo2{
+	color: #212121;
+}
+#titulo3{
+	font-weight: bolder;
+	color: #fff;
+	margin-top: 5em;
+	margin-left: 2em;
+	position: absolute;
+	font-size:200%
+	
+
+}
