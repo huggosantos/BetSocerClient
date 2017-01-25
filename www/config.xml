@@ -13,9 +13,9 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-versionCode" value="19" />
-    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-minSdkVersion" value="16" />
     <preference name="cdvVersionCode" value="19" />
-    <preference name="cdvMinSdkVersion" value="19" />
+    <preference name="cdvMinSdkVersion" value="16" />
     <preference name="cdvBuildMultipleApks" value="true" />
 
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
@@ -40,7 +40,7 @@
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <plugin name="cordova-plugin-datecs-printer" source="npm"  spec="~0.4.4"/>
     <plugin name="cordova-plugin-broadcaster" source="npm" />
-    <plugin name="cordova-plugin-crosswalk-webview" spec="~2.1.0" source="npm" />
+
     <icon src="icon.png"/>
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
