@@ -54,7 +54,7 @@ var codApostaClient; // variavel que guarda o cod da aposta feita no betSoccerCl
 app.controller('mostrarCodigoAposta', function($scope, $http, $route, $location) { 
   $scope.codAposta=codApostaClient;
   $scope.enviarWhatsApp = function(){
-    window.plugins.socialsharing.shareViaWhatsApp('Código no BetSoccerCliente para validãção! Código:'+codApostaClient,null, null, function () {alert( 'Aposta Compartilhada')}, function ( errormsg) {alert ("Erro ao tentar Compartilhar!")});
+    window.plugins.socialsharing.shareViaWhatsApp('Código no BetSoccerCliente para validação! Código:'+codApostaClient,null, null, function () {alert( 'Aposta Compartilhada')}, function ( errormsg) {alert ("Erro ao tentar Compartilhar!")});
   }
 
 });
