@@ -34,29 +34,29 @@
 						<div id="lista">		
 							<ul>
 								<li style="background-color:#8bc34a;">
-									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_casa)" id="valor_casa{{x.id}}" value="{{x.valor_casa}}" ng-disabled="verificaPalpite(x.valor_casa)" /><label style="text-align:center;" for="valor_casa{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_casa)}}</i></label>
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_casa)" id="valor_casa@{{x.id}}" value="{{x.valor_casa}}" ng-disabled="verificaPalpite(x.valor_casa)" /><label style="text-align:center;" for="valor_casa@{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_casa)}}</i></label>
 								</li>
 								<li style="background-color:#D1D5D8;">
-									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_empate)" id="valor_empate{{x.id}}" value="{{x.valor_empate}}" ng-disabled="verificaPalpite(x.valor_empate)" /><label for="valor_empate{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_empate)}}</i></label>
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_empate)" id="valor_empate@{{x.id}}" value="{{x.valor_empate}}" ng-disabled="verificaPalpite(x.valor_empate)" /><label for="valor_empate@{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_empate)}}</i></label>
 								</li>
 								<li style="background-color:#3498DB;">
-									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_fora)" id="valor_fora{{x.id}}" value="{{x.valor_fora}}" ng-disabled="verificaPalpite(x.valor_fora)" /><label for="valor_fora{{x.id}}"> <i id="textoNegrito">{{PalpiteColocarTraco(x.valor_fora)}}</i></label>
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_fora)" id="valor_fora@{{x.id}}" value="{{x.valor_fora}}" ng-disabled="verificaPalpite(x.valor_fora)" /><label for="valor_fora@{{x.id}}"> <i id="textoNegrito">{{PalpiteColocarTraco(x.valor_fora)}}</i></label>
 								</li>
 								<li style="background-color:#fff">
-									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_dupla)" id="valor_dupla{{x.id}}" value="{{x.valor_dupla}}" ng-disabled="verificaPalpite(x.valor_dupla)" /><label for="valor_dupla{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_dupla)}}</i> </label>
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_dupla)" id="valor_dupla@{{x.id}}" value="{{x.valor_dupla}}" ng-disabled="verificaPalpite(x.valor_dupla)" /><label for="valor_dupla@{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_dupla)}}</i> </label>
 								</li>
 								<li style="background-color:#ffeb3b;">
-									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_1_2)" id="valor_1_2{{x.id}}" value="{{x.valor_1_2}}" ng-disabled="verificaPalpite(x.valor_1_2)" /><label for="valor_1_2{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_1_2)}}</i> </label>
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.valor_1_2)" id="valor_1_2@{{x.id}}" value="{{x.valor_1_2}}" ng-disabled="verificaPalpite(x.valor_1_2)" /><label for="valor_1_2@{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.valor_1_2)}}</i> </label>
 								</li>
 								<li style="background-color:#e3f2fd;">
-									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.min_gol_3)" id="min_gol_3{{x.id}}" value="{{x.min_gol_3}}" ng-disabled="verificaPalpite(x.min_gol_3)" /><label for="min_gol_3{{x.id}}"> <i id="textoNegrito">{{PalpiteColocarTraco(x.min_gol_3)}}</i></label>
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.min_gol_3)" id="min_gol_3@{{x.id}}" value="{{x.min_gol_3}}" ng-disabled="verificaPalpite(x.min_gol_3)" /><label for="min_gol_3@{{x.id}}"> <i id="textoNegrito">{{PalpiteColocarTraco(x.min_gol_3)}}</i></label>
 								</li>
 								<li style="background-color:#ce93d8">
-									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.max_gol_2)" id="max_gol_2{{x.id}}" value="{{x.max_gol_2}}" ng-disabled="verificaPalpite(x.max_gol_2)" /><label for="max_gol_2{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.max_gol_2)}}</i> </label>
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.max_gol_2)" id="max_gol_2@{{x.id}}" value="{{x.max_gol_2}}" ng-disabled="verificaPalpite(x.max_gol_2)" /><label for="max_gol_2@{{x.id}}"><i id="textoNegrito">{{PalpiteColocarTraco(x.max_gol_2)}}</i> </label>
 								</li>
 								<li style="background-color:#dcedc8;" >
-									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.ambas_gol)" id="ambas_gol{{x.id}}" value="{{x.ambas_gol}}" ng-disabled="verificaPalpite(x.ambas_gol)"/><label   for="ambas_gol{{x.id}}""><i id="textoNegrito">{{PalpiteColocarTraco(x.ambas_gol)}}</i></label>
-								</li>
+									<input type="checkbox" class="{{x.id}}" ng-click="check($event,x,x.ambas_gol)" id="ambas_gol@{{x.id}}" value="{{x.ambas_gol}}" ng-disabled="verificaPalpite(x.ambas_gol)"/><label   for="ambas_gol@{{x.id}}""><i id="textoNegrito">{{PalpiteColocarTraco(x.ambas_gol)}}</i></label>
+								</li>	
 							</ul> 
 						</div>                 
 					</div>
@@ -67,7 +67,7 @@
 	</div>
 	<br><br><br>
 	<!-- butão fixo na tela -->
-	<div class="fixed-action-btn toolbar">
+	<div class="fixed-action-btn toolbar" ng-if="valor && nome">
 		<a data-target="modal1" class="btn-floating btn-large green darken-3">
 			<i>
 				<svg style="margin-top:15px;" fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +82,7 @@
 <div id="modal1" class="modal bottom-sheet">
 	<div class="modal-content">
 		<h4 class="texto2">Lista dos jogos apostados</h4>
-		<p ng-controller="controlCollapseible"><i id="texto3">Apostator: </i><i id="texto6">&nbsp;{{nome}}&nbsp;</i><i id="texto3">&nbsp;Valor Pago: </i><i id="texto4">&nbsp;{{valor.toFixed(2)}}&nbsp;</i><i id="texto3">&nbsp;Retorno Possível: </i><i id="texto5">&nbsp;{{re()}}</i></p>
+		<p ng-controller="controlCollapseible"><i id="texto3">Apostator: </i><i id="texto6">&nbsp;{{nome}}&nbsp;</i><br><i id="texto3">&nbsp;Valor Pago: </i><i id="texto4">&nbsp;{{valor.toFixed(2)}}&nbsp;</i><br><i id="texto3">&nbsp;Retorno Possível: </i><i id="texto5">&nbsp;{{re()}}</i></p>
 		<table class="striped" >
 			<thead>
 				<tr>
@@ -118,7 +118,7 @@
 		</div>
 		<div class="input-field col s6" >
 			<i class="material-icons prefix">attach_money</i>
-			<input id="icon_telephone" ng-model="valor" type="number" class="validate">
+			<input id="icon_telephone" ng-model="valor" type="number" step=0.01 class="validate">
 			<label for="icon_telephone">Valor</label>
 		</div>
 	</div>

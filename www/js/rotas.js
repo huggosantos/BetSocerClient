@@ -11,6 +11,10 @@
         templateUrl: 'paginas/consultaAposta.html',
         controller: 'consultarAposta'
       })
+      .when('/mostrarCodigoAposta', {
+        templateUrl: 'paginas/mostrarCodigoAposta.html',
+        controller: 'mostrarCodigoAposta'
+      })
       .otherwise('/aposta', {
         templateUrl: 'paginas/aposta.html',
         controller: 'home'
@@ -44,8 +48,17 @@ var copiaJsonAposta;
 var jsonApostas;
 var datasJogos = new Array();// vetor que guarda as datas dos jogos das apostas;
 var ultimaAposta;//variavel q guarda a ultima aposta do cambista;
-
+var codApostaClient; // variavel que guarda o cod da aposta feita no betSoccerCliente , recebe valor retornado do servidor;
 // Controller para buscar aposta por codigo
+
+app.controller('mostrarCodigoAposta', function($scope, $http, $route, $location) { 
+  $scope.codAposta=codApostaClient;
+  $scope.enviarWhatsApp = function(){
+    window.plugins.socialsharing.shareViaWhatsApp('Código no BetSoccerCliente para validãção! Código:'+codApostaClient,null, null, function () {alert( 'Aposta Compartilhada')}, function ( errormsg) {alert ("Erro ao tentar Compartilhar!")});
+  }
+
+});
+
 app.controller('consultarAposta', function($scope, $http, $route, $location) { 
 // metodo que faz a logica para mostrar o Loader na tela 
 $scope.mostrarLoader = function(){
@@ -110,9 +123,9 @@ $scope.retornaValorPalpite = function(ob){
   for(var i in aptStatus.palpites){
     if(ob==aptStatus.palpites[i].jogos_id){
       var x = aptStatus.palpites[i].palpite;
-     return x;
-   }
- }
+      return x;
+    }
+  }
 }
 
 $scope.retornaPalpite = function (ob){
@@ -154,175 +167,6 @@ toTop();
 
 //-----------------------------------------------FIM BUSCAR CONtrOLLER POR CODIGO--------------------------------------------
 
-//Controller para realizar o acerto com os agentes, pra consumir o servico é necessario o cod. Seguranca do cambista e do ADM.
-app.controller('acertoCambista', function($scope, $http, $route, $location) { 
- $scope.mostrarLoader = function(){
-  if($scope.aux==null || $scope.aux==false || $scope.aux==true){
-   $scope.aux=false;   
-   $scope.aux2=true;
- }
-}
-$scope.acertar = function() {
-  $http.get('http://betsoccer.club/public/cambista/acerto/'+$scope.codCambista+'/'+$scope.codAdm).then(function(response) {
-    $scope.aux2=false;
-    $scope.aux=true;
-    Materialize.toast('Acerto realizado Com Sucesso', 6000);
-  }).catch(function(err) {
-    $scope.aux2=false;
-    $scope.aux=true;
-    if(err.status==400){
-      Materialize.toast('Código de Segurança Inexistente', 4000);
-    }else if(err.status==401){
-      Materialize.toast('Código de Segurança Inativo', 4000);
-    }else{
-      Materialize.toast('Erro na comunicação!', 4000);
-    }
-
-  });
-}
-
-});
-//---------------------------------------------------FIM ACERTO-----------------------------------------------------------------
-
-// Controller para fazer a impressão da ultima aposta realizada pelo agente
-app.controller('imprimirUltima', function($scope, $http, $route, $location) { 
- $scope.mostrarLoader = function(){
-  if($scope.aux==null || $scope.aux==false || $scope.aux==true){
-   $scope.aux=false;   
-   $scope.aux2=true;
- }
-}
-$scope.imprimirUltimaAposta = function() {
-  $http.get('http://betsoccer.club/public/aposta/ultima/'+$scope.password).then(function(response) {
-    $scope.ultimaAposta = response.data;
-    ultimaAposta=response.data;
-      /*for (var i in ultimaAposta.aposta.jogos) {
-        console.log(i)
-          console.log(ultimaAposta.cambista);
-          console.log(ultimaAposta.aposta.jogos[i].data);
-          console.log(ultimaAposta.aposta.jogos[i].data);
-          console.log(ultimaAposta.aposta.jogos[i].times[0].descricao_time);
-          console.log(ultimaAposta.aposta.jogos[i].times[1].descricao_time);
-          console.log(ultimaAposta.palpites[i].tpalpite); 
-          console.log(ultimaAposta.palpites[i].palpite);
-      }
-      */imprimirUltimaApostaCambista();
-      $scope.aux2=false;
-      $scope.aux=true;
-    }).catch(function(err) {
-      $scope.aux2=false;
-      $scope.aux=true;
-      if(err.status==400){
-        Materialize.toast('Código de Segurança Inexistente', 4000);
-      }else if(err.status==401){
-        Materialize.toast('Código de Segurança Inativo', 4000);
-      }else{
-        Materialize.toast('Erro na comunicação!', 4000);
-      }
-
-    });
-  }
-
-});
-//----------------------------------------------FIM ULTIMA APOSTA-------------------------------------------------------------------------
-
-// Controllers para pegar os dados por aposta dos cambistas
-app.controller('teste', function($scope, $http, $route, $location) { 
-  $(document).ready(function(){
-    $('.collapsible').collapsible();
-  });
-});
-app.controller('dadosPorAposta', function($scope, $http, $route, $location) { 
- $scope.mostrarLoader = function(){
-  if($scope.aux==null || $scope.aux==false || $scope.aux==true){
-   $scope.aux=false;   
-   $scope.aux2=true;
- }
-}
-
-$scope.buscarDadosPorAposta = function() {
-  $http.get('http://betsoccer.club/public/aposta/premiosApostas/'+$scope.password).then(function(response) {
-    $scope.dadosPorAposta = response.data;
-    $scope.aux2=false;
-    $scope.aux=true;
-  }).catch(function(err) {
-    $scope.aux2=false;
-    $scope.aux=false;
-    if(err.status==400){
-      Materialize.toast('Código de Segurança Inexistente', 4000);
-    }else if(err.status==401){
-      Materialize.toast('Código de Segurança Inativo', 4000);
-    }else{
-      Materialize.toast('Erro na comunicação!', 4000);
-    }
-
-  });
-}
-$scope.toData = function(dateTime) {
-
-                var dateTime = dateTime.split(" "); //Cria um array com uma posição ["2016-07-10 12:40:10"]
-                var date = dateTime[0].split("-"); //Separa A string aprtir do "-" Cria um Array com tres posições ["2016", "17", "10"]
-                var dataFinal = date[2] + "/" +
-                date[1];
-                return dataFinal; //Retona a data No Padrao Brasileiro ["10/17/2016"]
-              }
-            //Metodo que faz um split em string DataTime e retonar apenas a Hora
-            $scope.toHora = function(dateTime) {
-            var dateTime = dateTime.split(" "); //Cria um array com uma posição ["2016-07-10 12:40:10"]
-
-            var time = dateTime[1].split(":"); //Separa a string aprtir do ":" Cria um Array com tres posições ["12", "40", "10"]
-            var timeFinal = time[0] + ":" + time[1];
-
-            return timeFinal; //Retona a hora descosiderando os segundos ["12:40"]
-
-          }
-          toTop();
-          $(document).ready(function(){
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal').modal();
-      });
-
-          $(document).ready(function(){
-            $('ul.tabs').tabs();
-          });
-
-
-        });
-//------------------------------------------FIM DADOS POR APOSTA------------------------------------------------------------------------
-
-// controller para pegar os dados do agente 
-app.controller('dadosCambista', function($scope, $http, $route, $location) { 
-  $scope.mostrarLoader = function(){
-    if($scope.teste==null || $scope.teste==false || $scope.teste==true){
-     $scope.teste=false;   
-     $scope.teste2=true;
-   }
- }
- $scope.buscarDadosCambista = function() {   
-  $http.get('http://betsoccer.club/public/aposta/ganhosApostas/'+$scope.password).then(function(response) {
-    $scope.dados = response.data;
-    $scope.teste2=false;
-    $scope.teste=true;
-  }).catch(function(err) {
-   $scope.teste=false;
-   $scope.teste2=false;
-   if(err.status==400){
-    Materialize.toast('Código de Segurança Inexistente', 4000);
-  }else if(err.status==401){
-    Materialize.toast('Código de Segurança Inativo', 4000);
-  }else{
-    Materialize.toast('Erro na comunicação!', 4000);
-  }
-});
-}
-toTop();
-$(document).ready(function() {
-        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal').modal();
-      });
-});
-//----------------------------------------------------FIM DADOS AGENTE---------------------------------------------------
-
 app.controller('controlCollapseible', function($scope, $http, $route, $location, $rootScope) {
   $(document).ready(function() {
     $('.collapsible').collapsible();
@@ -351,8 +195,11 @@ app.controller('controlCollapseible', function($scope, $http, $route, $location,
 
       // Função para deschecar um radio
     // Adicionar ou remover dados das aposta dos arrays de acordo com os radios.
-      $scope.check = function(event,j, p) {
+    $scope.check = function(event,j, p) {
 
+      var teste = event.currentTarget.id;
+      var np = teste.split("@");
+        //console.log(teste2[0]+" "+teste2[1]+" "+teste);
         //Pega a classe do inpunt clicado
         var classe = event.currentTarget.className;
         //Pega todos inputs da mesma classe do input clicado
@@ -380,13 +227,13 @@ app.controller('controlCollapseible', function($scope, $http, $route, $location,
             fora.splice(indice, 1); //Remove o time visitante do jogo na possição indice 
             contador--; //Decremento o contator usando em todos o arrays
           } else if(allRadios.indexOf(classe) == -1) {
-            console.log("2---"+allRadios.indexOf(classe));            
+            //console.log("2---"+allRadios.indexOf(classe));            
             datasJogos[contador]= j.data;
             jogosIdAposta[contador] = j.id;
             palpites[contador] = p;
             casa[contador] = j.time[0].descricao_time;
             fora[contador] = j.time[1].descricao_time;
-            nome_palpites[contador] = nomePapite(j, p);
+            nome_palpites[contador] = np[0];
             allRadios[contador] = classe;
             contador++;
           }else if(allRadios.indexOf(classe) != -1){            
@@ -396,7 +243,7 @@ app.controller('controlCollapseible', function($scope, $http, $route, $location,
             palpites[indice] = p;
             casa[indice] = j.time[0].descricao_time;
             fora[indice] = j.time[1].descricao_time;
-            nome_palpites[indice] = nomePapite(j, p);
+            nome_palpites[indice] = np[0];
           }
           event.currentTarget.checked = currentState;
         }
@@ -436,9 +283,12 @@ app.controller('controlCollapseible', function($scope, $http, $route, $location,
 
     //Metodo que envia um json para o servidor com os dados das aposta.
     $scope.enviar = function() {
+      if($scope.valor==undefined || $scope.nome==undefined || $scope.valor<=0){
+       Materialize.toast('Valores invalidos !', 4000);
+     }else{
       var json = $scope.montarJsonServidor(jogosIdAposta, palpites, nome_palpites);
       $http({
-        url: 'http://betsocceroficial.herokuapp.com/aposta/apostarSemCodigo',
+        url: 'http://betsoccer.club/public/aposta/apostarSemCodigo',
         method: 'POST',
         data: json,
         headers: {
@@ -449,10 +299,10 @@ app.controller('controlCollapseible', function($scope, $http, $route, $location,
       success(function(resposta) {
         Materialize.toast('Aposta realizada Com Sucesso', 4000);
         jsonApostas = resposta;
+        codApostaClient=jsonApostas.aposta.codigo;
            // imprimirAposta();
-        alert("CODIGO APOSTA : "+jsonApostas.aposta.codigo+" ANOTE O CODIO PARA FUTURAS CONSULTAS");
-        $location.path("/aposta");
-	location.reload();
+           //alert("CODIGO APOSTA : "+jsonApostas.aposta.codigo+" GUARDE O CÓDIO PARA FUTURAS CONSULTAS.");
+           $location.path("/mostrarCodigoAposta");
          }).
       error(function(data) {
         if(data.status==400){
@@ -465,34 +315,41 @@ app.controller('controlCollapseible', function($scope, $http, $route, $location,
           Materialize.toast('quantidade de jogos inferior a 2', 4000);
         }else{ 
           Materialize.toast('Erro na comunicação, tente novamente!', 4000);
-        $scope.error = true;
-      }
-       
+          $scope.error = true;
+        }
+
 
       });
-
     }
-    var contAux;
-    $scope.re = function retornoPossivel(){
-      auxiliar=testeA;
-      for (var k in palpites) {
-        auxiliar = auxiliar * palpites[k];           
-      }
-      return auxiliar.toFixed(2);
+  }
+  var contAux;
+  $scope.re = function retornoPossivel(){
+    auxiliar=testeA;
+    for (var k in palpites) {
+      auxiliar = auxiliar * palpites[k];           
     }
+    return auxiliar.toFixed(2);
+  }
 
 
-  });
+});
 
 
 
     app.controller('aposta', function($scope, $http, $routeParams, $location, $rootScope) {
 
-    //recebe o valor da aposta
+    //recebe o valor da aposta evalida envio da aposta
     $scope.enviarValor = function(){
-      usarNaApostas =
-      testeA = $scope.valor;
+      //usarNaApostas =
+      if($scope.valor==0 || $scope.valor<0 || $scope.valor==undefined){
+        testeA = $scope.valor;
+        Materialize.toast('Preencher todos os dados!', 4000);
+      }else{
+        testeA = $scope.valor;
+        $scope.validacaoValor=true;
+      }
     }
+
 
 
     $scope.buscar = function() {
